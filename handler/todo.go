@@ -22,12 +22,12 @@ func (t TodoHandler) Register (g *echo.Group) {
 }
 
 type GetAvailableTodosResponseTodo struct {
-	title string `json:"title"`
-	createdAt time.Time `json:"created_at"`
+	Title string `json:"title"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type GetAvailableTodosResponse struct {
-	todos []GetAvailableTodosResponseTodo `json:"todos"`
+	Todos []GetAvailableTodosResponseTodo `json:"todos"`
 }
 
 func (t TodoHandler) GetAvailableTodos(c echo.Context) error {
@@ -37,16 +37,15 @@ func (t TodoHandler) GetAvailableTodos(c echo.Context) error {
 		return err
 	}
 
-	res := GetAvailableTodosResponse{
-		todos: []GetAvailableTodosResponseTodo{},		
+	res := &GetAvailableTodosResponse{
+		Todos: []GetAvailableTodosResponseTodo{},		
 	}
 
 	for _, todo := range output.Todos {
-		res.todos = append(res.todos, GetAvailableTodosResponseTodo{
-			title: todo.GetTitle(),
-			createdAt: todo.GetCreatedAt(),
+		res.Todos = append(res.Todos, GetAvailableTodosResponseTodo{
+			Title: todo.GetTitle(),
+			CreatedAt: todo.GetCreatedAt(),
 		})
 	}
-
 	return c.JSON(http.StatusOK, res)
 }

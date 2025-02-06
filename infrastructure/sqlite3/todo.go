@@ -48,7 +48,7 @@ func (tr TodoRepository) CreateTodo(params repository.CreateTodoParams) (entity.
 	return entity.NewTodo(params.Title, nil, createdAt), nil
 }
 
-func Migrate(conn sqlx.DB) error {
+func MigrateTodo(conn *sqlx.DB) error {
     _, err := conn.Exec(`
         CREATE TABLE IF NOT EXISTS todos (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
