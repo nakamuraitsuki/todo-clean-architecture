@@ -3,7 +3,7 @@ package repository
 import "practice/domain/entity"
 
 type CreateTodoParams struct {
-	title string
+	Title string
 }
 
 type ITodoRepository interface {

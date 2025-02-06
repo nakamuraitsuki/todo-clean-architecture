@@ -17,7 +17,7 @@ func NewTodoHandler (todoRepository repository.ITodoRepository) TodoHandler {
 	return TodoHandler{todoRepository: todoRepository}
 }
 
-func (t TodoHandler) Register (g echo.Group) {
+func (t TodoHandler) Register (g *echo.Group) {
 	g.GET("/available", t.GetAvailableTodos)
 }
 
