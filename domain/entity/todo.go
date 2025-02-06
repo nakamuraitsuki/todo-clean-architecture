@@ -7,3 +7,7 @@ type Todo struct {
 	completedAt *time.Time
 	createdAt   time.Time
 }
+
+func (t Todo) IsAvailable() bool {
+	return t.completedAt == nil
+}
